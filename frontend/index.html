@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Savy Electricals — Plan Takeoff</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ SPLASH SCREEN ============ -->
+<div id="splash" aria-hidden="true">
+  <div class="splash-bg-text">SAVY<br>ELECTRICALS</div>
+  <div class="wire-stage">
+    <div class="wire wire-left"><span></span></div>
+    <div class="wire wire-right"><span></span></div>
+    <div class="spark-burst" id="sparkBurst"></div>
+    <div class="splash-flash"></div>
+  </div>
+  <div class="splash-brand">⚡ Savy Electricals</div>
+  <p class="splash-sub">Connecting to Plan Takeoff…</p>
+  <div class="splash-bar"><i></i></div>
+  <button id="splashSkip" type="button">Skip</button>
+</div>
+
+<header>
+  <div class="brand">
+    <span class="logo">⚡</span>
+    <strong>Plan Takeoff</strong>
+    <span class="pill" title="This tool produces a first-pass count. A person must review it before it is used for bidding or ordering.">Planning aid &middot; a person reviews every count</span>
+  </div>
+
+  <!-- wire connecting + spark animation (top right) -->
+  <div class="header-wire" aria-hidden="true">
+    <svg viewBox="0 0 140 36">
+      <g class="hw-left">
+        <path d="M0 18 H52" class="hw-cable hw-hot"/>
+        <path d="M52 18 H62" class="hw-tip"/>
+      </g>
+      <g class="hw-right">
+        <path d="M78 18 H88" class="hw-tip"/>
+        <path d="M88 18 H140" class="hw-cable hw-neutral"/>
+      </g>
+      <g class="hw-spark">
+        <circle cx="70" cy="18" r="4"/>
+        <path d="M70 4v8M70 24v8M56 18h8M76 18h8M60 8l6 6M80 8l-6 6M60 28l6-6M80 28l-6-6"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="actions">
+    <span id="saveState"></span>
+    <button id="btnSample">Load sample plan</button>
+    <label class="btn" for="fileInput">Upload plan</label>
+    <input id="fileInput" type="file" accept="image/*,.pdf" hidden>
+  </div>
+</header>
+
+<!-- ============ LIVE ESTIMATE HUD ============ -->
+<div id="hud">
+  <div class="hud-card"><small>Total devices</small><b id="fxTotal">0</b></div>
+  <div class="hud-card warn"><small>Needs a look</small><b id="fxFlagged">0</b></div>
+  <div class="hud-card"><small>Legend symbols</small><b id="fxTypes">–</b></div>
+  <div class="hud-card live"><small>Status</small><b id="fxStatus">Idle</b></div>
+  <div class="hud-progress"><i id="fxProgress"></i></div>
+</div>
+
+<main>
+  <section id="viewerWrap">
+    <canvas id="three-bg"></canvas>
+    <div id="scan" hidden></div>
+
+    <div id="toolbar">
+      <button data-mode="select" class="on">Select / pan</button>
+      <button data-mode="multi">Select several</button>
+      <button data-mode="add">Add missed symbol</button>
+      <button data-mode="wire" title="Draw a wire run yourself: click the start device, the corners, then the end device">Draw wire run</button>
+      <button data-mode="scale" title="Tell the app how long something on the plan is, so wire runs come out in feet">Set scale</button>
+      <span id="scaleForm" hidden>That span is <input id="scaleFt" type="number" min="0.1" step="any" placeholder="feet"> ft <button id="scaleApply">Apply</button></span>
+      <select id="addType" title="Type for the symbol you add"></select>
+      <button id="btnSelFlag" title="Select every flagged (uncertain) box so you can remove or retype them in one click">Select flagged</button>
+      <button id="btnReview">Review flagged (N)</button>
+      <button id="btnFit">Fit (F)</button>
+      <button id="btnUndo">Undo (Ctrl+Z)</button>
+      <label class="chk"><input type="checkbox" id="showRejected"> show rejected</label>
+      <span id="scaleInfo" class="muted"></span>
+      <span id="modeHint"></span>
+    </div>
+
+    <svg id="svg" xmlns="http://www.w3.org/2000/svg">
+      <g id="world">
+        <image id="img" x="0" y="0"/>
+        <g id="excl"></g>
+        <g id="rej"></g>
+        <g id="wires"></g>
+        <g id="boxes"></g>
+        <rect id="draft" class="draft" visibility="hidden"/>
+      </g>
+    </svg>
+
+    <div id="empty">
+      <div class="hero">
+        <svg class="nbolt" viewBox="0 0 60 80" aria-hidden="true"><path d="M36 4 L10 46 H28 L22 76 L52 30 H33 Z"/></svg>
+        <h1>Drop a plan. <span>Get a takeoff.</span></h1>
+        <p>Load the sample plan, or upload your own (PNG, JPG or PDF) to start.<br>
+        Drag &amp; drop a file anywhere on the blueprint.</p>
+      </div>
+    </div>
+
+    <div id="busy" hidden>
+      <div class="spin"></div>
+      <span id="busyMsg">Working&hellip;</span>
+      <small id="busySub"></small>
+    </div>
+    <div id="pop" hidden></div>
+    <div id="toast" hidden></div>
+  </section>
+
+  <aside id="panel">
+    <section>
+      <h3>1. Legend symbols <small>drawn from this plan's own legend</small></h3>
+      <p class="hint">With a key, uploading a plan reads its legend and runs detection automatically. Otherwise draw a box around each symbol in the legend. Redo fixes a wrong crop.</p>
+      <button id="btnAutoLegend" class="primary">Re-read legend with Meta model</button>
+      <p class="hint" id="autoHint"></p>
+      <div id="legendRows"></div>
+    </section>
+
+    <section>
+      <h3>2. Ignore areas <small>title block, legend, notes</small></h3>
+      <button id="btnExclude">Draw area to ignore</button>
+      <div id="exclList"></div>
+    </section>
+
+    <section>
+      <h3>3. Detect</h3>
+      <label class="row">Sensitivity <input type="range" id="thr" min="0.55" max="0.9" step="0.01" value="0.70"><span id="thrVal">0.70</span></label>
+      <p class="hint">Lower finds more (and more false hits). Raise it if you see junk.</p>
+      <label class="row chk"><input type="checkbox" id="useVlm"> <span>Verify each hit with Meta vision model</span></label>
+      <p class="hint" id="vlmHint"></p>
+      <button id="btnRun" class="primary">Run detection</button>
+      <p class="hint" id="metaLine"></p>
+      <p class="hint warnline" id="warnLine" hidden></p>
+    </section>
+
+    <section>
+      <h3>4. Counts <small>click a type to select all of it</small></h3>
+      <table id="totals"></table>
+      <div id="reviewBox"></div>
+      <div class="btns">
+        <button id="btnCsv">Counts CSV</button>
+        <button id="btnMat">Material list CSV</button>
+        <button id="btnJson">JSON</button>
+      </div>
+    </section>
+
+    <section id="wireSection">
+      <h3>Wire runs <small id="wireSum"></small></h3>
+      <p class="hint">Dashed lines from the legend (like switch control) are traced and measured. Click a run to see it, ✕ removes a wrong one, or press Draw wire run in the toolbar to draw your own.</p>
+      <div id="wireList"></div>
+      <div class="btns"><button id="btnWireClear">Clear all runs</button></div>
+    </section>
+
+    <section id="estSection">
+      <h3>5. Estimate <small>parts, labor and a total</small></h3>
+      <div id="estBody"></div>
+    </section>
+
+    <section id="editor">
+      <h3>Selected</h3>
+      <div id="editorBody" class="hint">Click a box on the plan. A popup appears on it to change the type or remove it.</div>
+    </section>
+
+    <section>
+      <h3>Needs a look <small id="flagCount"></small></h3>
+      <div id="flagList"></div>
+    </section>
+  </aside>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer id="siteFooter">
+  <a class="footer-brand" href="https://github.com/YoungSavy28" target="_blank" rel="noopener noreferrer">
+    <span class="footer-logo">⚡</span>
+    <span><strong>Savy Electricals</strong><small>Plan Takeoff · built by Xavier Cabrera</small></span>
+  </a>
+  <nav class="footer-links">
+    <a href="https://github.com/YoungSavy28" target="_blank" rel="noopener noreferrer" aria-label="GitHub — YoungSavy28">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      <span>GitHub</span><small>@YoungSavy28</small>
+    </a>
+    <a href="https://www.linkedin.com/in/xaviercabrera28/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn — Xavier Cabrera">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>
+      <span>LinkedIn</span><small>Xavier Cabrera</small>
+    </a>
+  </nav>
+  <p class="footer-note">© 2026 Savy Electricals · First-pass counts only — a person reviews every estimate.</p>
+</footer>
+
+<script src="app.js"></script>
+<script src="splash.js"></script>
+<script type="module" src="fx.js"></script>
+</body>
+</html>

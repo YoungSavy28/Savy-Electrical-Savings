@@ -1,0 +1,117 @@
+{
+ "as_of": "2026-10-30",
+ "disclaimer": "Typical US retail prices read from the linked pages on the date above (not quotes, no tax, regional prices vary). Items with no price need one entered. Labor hours are rough residential assumptions, not a labor-unit manual.",
+ "items": {
+  "Device box": {
+   "unit": "each",
+   "price": 2.37,
+   "low": 0.6,
+   "high": 2.37,
+   "note": "Carlon 1-gang 14 cu in old-work box B114RB",
+   "source": "https://www.homedepot.com/p/1-Gang-14-cu-in-Old-Work-Box-B114RB/100404027"
+  },
+  "Cover plate": {
+   "unit": "each",
+   "price": 0.88,
+   "note": "Leviton 1-gang Decora plate 80401-W",
+   "source": "https://www.homedepot.com/p/100036991"
+  },
+  "Duplex receptacle": {
+   "unit": "each",
+   "price": 1.8,
+   "note": "Leviton 15A tamper-resistant, from a 10-pack at about $17.99",
+   "source": "https://store.leviton.com/products/15-amp-125-volt-tamper-resistant-duplex-receptacle-10-pack-white-t5320-wmp"
+  },
+  "GFCI receptacle": {
+   "unit": "each",
+   "price": 19.98,
+   "note": "Leviton GFTR1 self-test tamper-resistant GFCI",
+   "source": "https://www.homedepot.com/p/Leviton-15-Amp-125-Volt-Duplex-SmarTest-Self-Test-SmartlockPro-Tamper-Resistant-GFCI-Outlet-White-GFTR1-KW-R92-GFTR1-0KW/205996763"
+  },
+  "Switch": {
+   "unit": "each",
+   "price": 0.98,
+   "note": "Leviton 15A single-pole toggle 1451-2W",
+   "source": "https://www.homedepot.com/p/Leviton-15-Amp-Single-Pole-Toggle-Light-Switch-White-1451-2W-R52-01451-02W/100026991"
+  },
+  "Ceiling box": {
+   "unit": "each",
+   "price": 7.98,
+   "note": "Carlon 4 in new-work ceiling box with hanger bar B620KGR-UPC",
+   "source": "https://homedepot.com/p/Carlon-1-Gang-4-in-20-cu-in-PVC-New-Work-Electrical-Ceiling-Box-with-Adjustable-Hanger-Bar-and-Ground-Lug-B620KGR-UPC/100114498"
+  },
+  "Light fixture": {
+   "unit": "each",
+   "price": 29.96,
+   "note": "Commercial Electric 11 in LED flush mount CE1011B-06 (a basic fixture; yours may cost more)",
+   "source": "https://www.homedepot.com/p/Commercial-Electric-11-in-Low-Profile-1-Light-White-LED-Puff-Flush-Mount-CE1011B-06/203725984"
+  },
+  "Smoke alarm": {
+   "unit": "each",
+   "price": 46.74,
+   "low": 24.95,
+   "high": 46.74,
+   "note": "Kidde SMACFEX hardwired with battery backup: regular price $46.74, $24.95 on sale (listed sold out)",
+   "source": "https://readyelectricsupply.com/a/s/products/kidde-smacfex-hard-wired-firex-smoke-alarm-120-v-with-aa-backup-battery-21033081"
+  },
+  "Exhaust fan": {
+   "unit": "each",
+   "price": 109.89,
+   "low": 43.05,
+   "high": 265.53,
+   "note": "Panasonic RG-C811A 80-110 CFM $109.89 (Walmart, listed out of stock). Range: $43 deal to $265 for a Broan fan with light",
+   "source": "https://www.walmart.com/ip/Panasonic-RG-C811A-4in-Duct-80-110-CFM-Ventilation-Fan-0-3-0-5-Sones-for-Bathroom-White/2388836711"
+  },
+  "Duct (est.)": {
+   "unit": "each",
+   "price": 25.0,
+   "note": "ASSUMPTION, not sourced: 4 in flex duct, clamps and a wall/roof cap per fan",
+   "source": null
+  },
+  "Electrical panel": {
+   "unit": "each",
+   "price": 162.99,
+   "note": "Square D Homeline HOM2040M100PC 100A 20-space main-breaker load center. Breakers are NOT included",
+   "source": "https://zoro.com/square-d-load-center-hom-20-spaces-100a-120240v-pon-convertible-main-breaker-1-phase-hom2040m100pc/i/G3302169"
+  },
+  "14/2 NM-B cable": {
+   "unit": "ft",
+   "price": 0.5,
+   "low": 0.3,
+   "high": 0.5,
+   "note": "Southwire 14/2 NM-B w/ground, 250 ft roll $125 ($0.50/ft); deals as low as about $75",
+   "source": "https://homedepot.com/p/Southwire-250-ft-14-2-Romex-SIMpull-Solid-NM-B-W-G-Wire-28827469/202019377"
+  }
+ },
+ "labor": {
+  "rate_per_hour": 85,
+  "rate_note": "Residential electrician rates: apprentice $40-60, journeyman $60-90, master $90-120 per hour (Housecall Pro, 2026)",
+  "rate_source": "https://www.housecallpro.com/resources/how-to-price-electrical-work/",
+  "material_markup_pct": 15,
+  "contingency_pct": 10,
+  "wire_waste_pct": 10,
+  "vertical_ft_per_run": 8,
+  "wire_hours_per_100ft": 2.0,
+  "default_hours_each": 0.5,
+  "hours_each": {
+   "ceiling_light": 0.6,
+   "recessed": 0.6,
+   "fan": 1.0,
+   "duplex": 0.4,
+   "telephone": 0.3,
+   "switch": 0.35,
+   "dimmer": 0.4,
+   "doorbell": 0.4,
+   "gfci": 0.5,
+   "afci": 0.4,
+   "pendant": 0.6,
+   "wall_light": 0.5,
+   "smoke_alarm": 0.5,
+   "panel": 6.0,
+   "exhaust_fan": 1.5,
+   "hpu": 3.0,
+   "water_heater": 2.0
+  },
+  "assumptions_note": "Hours, markup, contingency, waste and vertical drop per wire run (switch height to ceiling plus slack) are ASSUMPTIONS you can change."
+ }
+}

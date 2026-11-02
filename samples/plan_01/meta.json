@@ -1,0 +1,5 @@
+{
+  "name": "Sample residential plan (plan_01)",
+  "exclude": [[1990, 470, 540, 1150]],
+  "note": "Exclude box covers the title block and legend on the right so legend symbols are not counted. Test image only; check its license before publishing it."
+}

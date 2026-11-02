@@ -1,0 +1,13 @@
+{
+  "_comment": "Copy to samples/<plan>/ground_truth.json and fill in YOUR hand count of the plan area (not the legend). Time yourself doing it: that is your 'manual takeoff time' for the write-up.",
+  "counts": {
+    "ceiling_light": 0,
+    "recessed": 0,
+    "fan": 0,
+    "duplex": 0,
+    "telephone": 0,
+    "switch": 0,
+    "dimmer": 0,
+    "doorbell": 0
+  }
+}

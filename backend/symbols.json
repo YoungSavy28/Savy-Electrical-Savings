@@ -1,0 +1,431 @@
+{
+  "symbols": [
+    {
+      "id": "ceiling_light",
+      "label": "Ceiling light",
+      "legend_label": "CEILING MOUNTED LIGHT",
+      "color": "#e63946",
+      "rotations": [
+        0
+      ],
+      "description": "circle with four short diagonal ticks (an X through a circle)",
+      "hints": [
+        "no text printed beneath the symbol",
+        "ticks are short and straight, not curved blades"
+      ],
+      "materials": [
+        [
+          "Ceiling box",
+          1
+        ],
+        [
+          "Light fixture",
+          1
+        ]
+      ]
+    },
+    {
+      "id": "recessed",
+      "label": "Recessed light",
+      "legend_label": "RECESSED",
+      "color": "#f4722b",
+      "rotations": [
+        0
+      ],
+      "description": "same circle-with-ticks drawing as the ceiling light, with the text RCLT printed beneath it",
+      "hints": [
+        "the text RCLT directly beneath the symbol is the deciding feature"
+      ],
+      "materials": [
+        [
+          "Recessed can",
+          1
+        ],
+        [
+          "Trim kit",
+          1
+        ]
+      ]
+    },
+    {
+      "id": "fan",
+      "label": "Ceiling fan",
+      "legend_label": "FAN",
+      "color": "#d99a00",
+      "rotations": [
+        0,
+        90
+      ],
+      "description": "small circle with four curved propeller-style blades",
+      "hints": [
+        "blades are wide and curved like a propeller, not thin straight ticks",
+        "no RCLT text"
+      ],
+      "materials": [
+        [
+          "Fan-rated box",
+          1
+        ],
+        [
+          "Ceiling fan",
+          1
+        ]
+      ]
+    },
+    {
+      "id": "duplex",
+      "label": "Duplex receptacle",
+      "legend_label": "DUPLEX RECEPTACLE OUTLET",
+      "color": "#2a9d8f",
+      "rotations": [
+        0,
+        90,
+        180,
+        270
+      ],
+      "description": "circle with a horizontal line through it and lines extending to one side",
+      "hints": [
+        "circle bisected by a horizontal line"
+      ],
+      "materials": [
+        [
+          "Device box",
+          1
+        ],
+        [
+          "Duplex receptacle",
+          1
+        ],
+        [
+          "Cover plate",
+          1
+        ]
+      ]
+    },
+    {
+      "id": "telephone",
+      "label": "Telephone outlet",
+      "legend_label": "TELEPHONE OUTLET",
+      "color": "#1d70b8",
+      "rotations": [
+        0
+      ],
+      "description": "solid black downward-pointing triangle",
+      "hints": [
+        "solid filled triangle"
+      ],
+      "materials": [
+        [
+          "Low-voltage box",
+          1
+        ],
+        [
+          "Telephone jack",
+          1
+        ],
+        [
+          "Cover plate",
+          1
+        ]
+      ],
+      "threshold_offset": 0.12,
+      "max_ink_ratio": 1.8
+    },
+    {
+      "id": "switch",
+      "label": "Switch",
+      "legend_label": "SWITCH",
+      "color": "#7b4bd6",
+      "rotations": [
+        0
+      ],
+      "description": "the letter S, no box around it",
+      "hints": [
+        "a bare letter S with no square around it"
+      ],
+      "materials": [
+        [
+          "Device box",
+          1
+        ],
+        [
+          "Switch",
+          1
+        ],
+        [
+          "Cover plate",
+          1
+        ]
+      ],
+      "threshold_offset": 0.15,
+      "max_ink_ratio": 1.7
+    },
+    {
+      "id": "dimmer",
+      "label": "Dimmer switch",
+      "legend_label": "DIMMER SWITCH",
+      "color": "#d6409f",
+      "rotations": [
+        0
+      ],
+      "description": "the letter D inside a plain square",
+      "hints": [
+        "a D in a square with nothing attached to the right side of the square"
+      ],
+      "materials": [
+        [
+          "Device box",
+          1
+        ],
+        [
+          "Dimmer",
+          1
+        ],
+        [
+          "Cover plate",
+          1
+        ]
+      ],
+      "aniso": true,
+      "max_ink_ratio": 2.2,
+      "threshold_offset": -0.12
+    },
+    {
+      "id": "doorbell",
+      "label": "Door bell",
+      "legend_label": "DOOR BELL",
+      "color": "#0096c7",
+      "rotations": [
+        0
+      ],
+      "description": "the letter D inside a square with a small semicircle attached to the right side",
+      "hints": [
+        "a D in a square PLUS a small semicircle attached on the right side; no semicircle means dimmer"
+      ],
+      "materials": [
+        [
+          "Low-voltage box",
+          1
+        ],
+        [
+          "Door bell button/chime",
+          1
+        ]
+      ],
+      "aniso": true,
+      "max_ink_ratio": 2.2,
+      "threshold_offset": -0.12
+    },
+    {
+      "id": "gfci",
+      "label": "GFCI receptacle",
+      "legend_label": "GROUND FAULT CIRCUIT INTERRUPTER",
+      "color": "#6d4c41",
+      "rotations": [
+        0
+      ],
+      "description": "duplex receptacle (circle with a horizontal line) with the letters GFCI printed beside it",
+      "hints": [
+        "same circle-and-line as a duplex receptacle; the printed text GFCI is what distinguishes it"
+      ],
+      "materials": [
+        [
+          "Device box",
+          1
+        ],
+        [
+          "GFCI receptacle",
+          1
+        ],
+        [
+          "Cover plate",
+          1
+        ]
+      ]
+    },
+    {
+      "id": "afci",
+      "label": "AFCI receptacle",
+      "legend_label": "ARC FAULT CIRCUIT INTERRUPTER",
+      "color": "#264653",
+      "rotations": [
+        0
+      ],
+      "description": "duplex receptacle (circle with a horizontal line) with the letters AFCI printed beside it",
+      "hints": [
+        "same circle-and-line as a duplex receptacle; the printed text AFCI is what distinguishes it"
+      ],
+      "materials": [
+        [
+          "Device box",
+          1
+        ],
+        [
+          "Duplex receptacle",
+          1
+        ],
+        [
+          "Cover plate",
+          1
+        ]
+      ]
+    },
+    {
+      "id": "pendant",
+      "label": "Pendant light",
+      "legend_label": "PENDANT LIGHT FIXTURE",
+      "color": "#8ac926",
+      "rotations": [
+        0
+      ],
+      "description": "circle with a cross of lines through it and a small letter P next to it",
+      "hints": [
+        "like a ceiling light but with a P printed beside it"
+      ],
+      "materials": [
+        [
+          "Ceiling box",
+          1
+        ],
+        [
+          "Pendant fixture",
+          1
+        ]
+      ]
+    },
+    {
+      "id": "wall_light",
+      "label": "Wall light",
+      "legend_label": "WALL MOUNTED LIGHT FIXTURE",
+      "color": "#ff9f1c",
+      "rotations": [
+        0
+      ],
+      "description": "circle with a cross of lines through it, with an extra short line or bar on one side marking the wall",
+      "hints": [
+        "like a ceiling light fixture but attached to a wall"
+      ],
+      "materials": [
+        [
+          "Device box",
+          1
+        ],
+        [
+          "Wall sconce",
+          1
+        ]
+      ]
+    },
+    {
+      "id": "smoke_alarm",
+      "label": "Smoke alarm",
+      "legend_label": "SMOKE ALARM",
+      "color": "#9d0208",
+      "rotations": [
+        0
+      ],
+      "description": "small filled red or dark rectangle with the letters SA printed near it",
+      "hints": [
+        "solid rectangle, not a circle"
+      ],
+      "materials": [
+        [
+          "Ceiling box",
+          1
+        ],
+        [
+          "Smoke alarm",
+          1
+        ]
+      ]
+    },
+    {
+      "id": "panel",
+      "label": "Electrical panel",
+      "legend_label": "ELECTRICAL PANEL",
+      "color": "#343a40",
+      "rotations": [
+        0
+      ],
+      "description": "solid black rectangle or triangle-cut rectangle shape on a wall",
+      "hints": [
+        "large solid black shape"
+      ],
+      "materials": [
+        [
+          "Electrical panel",
+          1
+        ]
+      ]
+    },
+    {
+      "id": "exhaust_fan",
+      "label": "Exhaust fan",
+      "legend_label": "CEILING MOUNTED EXHAUST FAN",
+      "color": "#4895ef",
+      "rotations": [
+        0
+      ],
+      "description": "square with a circle inside it, usually in a bathroom",
+      "hints": [
+        "square outline containing a circle or swirl"
+      ],
+      "materials": [
+        [
+          "Exhaust fan",
+          1
+        ],
+        [
+          "Duct (est.)",
+          1
+        ]
+      ]
+    },
+    {
+      "id": "hpu",
+      "label": "Heat pump outdoor unit",
+      "legend_label": "HEAT PUMP OUTDOOR UNIT",
+      "color": "#6c757d",
+      "rotations": [
+        0
+      ],
+      "description": "rectangle with the letters HPU written inside it, outside the building",
+      "hints": [
+        "rectangle containing HPU text"
+      ],
+      "materials": [
+        [
+          "Disconnect",
+          1
+        ],
+        [
+          "Whip / conduit",
+          1
+        ]
+      ]
+    },
+    {
+      "id": "water_heater",
+      "label": "Heat pump water heater",
+      "legend_label": "HEAT PUMP WATER HEATER",
+      "color": "#e07a5f",
+      "rotations": [
+        0
+      ],
+      "description": "circle with the letters WH inside it",
+      "hints": [
+        "circle with WH text inside"
+      ],
+      "materials": [
+        [
+          "Disconnect / box",
+          1
+        ],
+        [
+          "Whip",
+          1
+        ]
+      ]
+    }
+  ]
+}

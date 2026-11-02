@@ -1,0 +1,9 @@
+flask>=3.0
+opencv-python-headless>=4.8
+numpy>=1.24
+pillow>=10.0
+requests>=2.31
+pypdfium2>=4.30        # PDF upload (pip only, nothing else to install)
+pdf2image>=1.17        # optional fallback; needs poppler
+pytesseract>=0.3.10    # optional: RCLT rule + text suppression (also needs tesseract: brew install tesseract / apt install tesseract-ocr)
+# live price search needs nothing extra. For better results set TAVILY_API_KEY or BRAVE_API_KEY in .env
