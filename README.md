@@ -6,6 +6,7 @@
 **Upload an electrical plan. Get every symbol counted, every wire run measured, and a priced estimate, with a person reviewing every number.**
 
 <img src="assets/meta.gif" alt="Savy Electrical Estimates demo" width="760">
+<p><em>The demo GIF has been compressed to reduce file size for display in this README.</em></p>
 
 *Built solo for the Meta Global AI Developer Hackathon 2026 (indie track) by [Xavier Cabrera](https://www.linkedin.com/in/xaviercabrera28/)*
 
